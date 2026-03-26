@@ -28,12 +28,11 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 40px;
-  font-size: 36px;
 }
 
 /* accordion */
 .accordion {
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
   margin-bottom: 15px;
   overflow: hidden;
@@ -51,7 +50,7 @@ h1 {
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: 0.3s;
   padding: 0 20px;
 }
 
@@ -75,14 +74,13 @@ h1 {
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
 }
 
-.btn:hover {
-  background: #059669;
+.btn:disabled {
+  background: gray;
+  cursor: not-allowed;
 }
 
-/* hidden sections */
 .hidden {
   display: none;
 }
@@ -95,15 +93,10 @@ h1 {
   margin-bottom: 20px;
 }
 
-.option {
-  display: block;
-  margin: 10px 0;
-  cursor: pointer;
-}
-
-.feedback {
-  margin-top: 10px;
-  font-weight: bold;
+.result {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -111,100 +104,144 @@ h1 {
 <body>
 
 <div class="overlay">
-  <div class="container">
+<div class="container">
 
-    <!-- PAGE 1 -->
-    <div id="page1">
+<!-- PAGE 1 -->
+<div id="page1">
 
-      <h1>10 Tips for your career</h1>
+<h1>10 Tips for your career</h1>
 
-      <div class="accordion">
-        <div class="accordion-header"><span><span class="number">1.</span>Get to know yourself</span><span>+</span></div>
-        <div class="accordion-content"><p>Think about what you enjoy and why.</p></div>
-      </div>
+<div id="tips-container"></div>
 
-      <div class="accordion">
-        <div class="accordion-header"><span><span class="number">2.</span>Brainstorm</span><span>+</span></div>
-        <div class="accordion-content"><p>Write creative ideas with others.</p></div>
-      </div>
+<button id="nextBtn" class="btn" disabled>Next →</button>
 
-      <div class="accordion">
-        <div class="accordion-header"><span><span class="number">3.</span>Explore</span><span>+</span></div>
-        <div class="accordion-content"><p>Ask people and learn from them.</p></div>
-      </div>
+</div>
 
-      <button class="btn" onclick="goToPage2()">Next →</button>
+<!-- PAGE 2 -->
+<div id="page2" class="hidden">
 
-    </div>
+<h1>Review</h1>
 
-    <!-- PAGE 2 -->
-    <div id="page2" class="hidden">
+<div id="quiz"></div>
 
-      <h1>Quick Review</h1>
+<button class="btn" onclick="checkAnswers()">Check answers</button>
+<div class="result" id="result"></div>
+<button class="btn" onclick="goBack()">← Back</button>
 
-      <div class="question">
-        <p><strong>1. What should you do first?</strong></p>
+</div>
 
-        <label class="option">
-          <input type="radio" name="q1" value="wrong"> Make a plan
-        </label>
-
-        <label class="option">
-          <input type="radio" name="q1" value="correct"> Get to know yourself
-        </label>
-
-        <label class="option">
-          <input type="radio" name="q1" value="wrong"> Act immediately
-        </label>
-
-        <div class="feedback" id="feedback1"></div>
-      </div>
-
-      <button class="btn" onclick="checkAnswers()">Check answers</button>
-      <button class="btn" onclick="goToPage1()">← Back</button>
-
-    </div>
-
-  </div>
+</div>
 </div>
 
 <script>
-/* accordion */
-const items = document.querySelectorAll(".accordion");
-items.forEach(item => {
-  item.querySelector(".accordion-header").addEventListener("click", () => {
-    item.classList.toggle("active");
+const tips = [
+"Before you start off in pursuit of a career that really lights your fire, take some time to do some serious self-exploration. Make a list of all the things in your life that you have really enjoyed.",
+"Once you have a picture of the things that light your fire, brainstorm ways you could incorporate them into your life.",
+"Ask, ask, ask! Identify people who are knowledgeable in those areas and contact them.",
+"Look for small steps you can take that will bring your passion into your life.",
+"Make a list of what is stopping you. Recognizing them is the first step.",
+"Surround yourself with supportive people who inspire you.",
+"Think about what success means to you and see failure as a learning opportunity.",
+"Create a plan that organizes your ideas.",
+"Don’t wait. Take action now.",
+"Commit to your goal by writing it down and saying it out loud."
+];
+
+let opened = new Set();
+const container = document.getElementById("tips-container");
+
+tips.forEach((text, i) => {
+  const div = document.createElement("div");
+  div.className = "accordion";
+
+  div.innerHTML = `
+    <div class="accordion-header">
+      <span><span class="number">${i+1}.</span>Tip ${i+1}</span>
+      <span>+</span>
+    </div>
+    <div class="accordion-content">
+      <p>${text}</p>
+    </div>
+  `;
+
+  div.querySelector(".accordion-header").addEventListener("click", () => {
+    div.classList.toggle("active");
+    opened.add(i);
+
+    if (opened.size === tips.length) {
+      document.getElementById("nextBtn").disabled = false;
+    }
   });
+
+  container.appendChild(div);
 });
 
 /* navigation */
-function goToPage2() {
+document.getElementById("nextBtn").onclick = () => {
   document.getElementById("page1").classList.add("hidden");
   document.getElementById("page2").classList.remove("hidden");
+};
+
+/* quiz */
+const questions = [
+{
+q: "What is the first step?",
+options: ["Make a plan","Get to know yourself","Take action"],
+correct: 1
+},
+{
+q: "What should you do after identifying your interests?",
+options: ["Quit your job","Brainstorm ideas","Ignore them"],
+correct: 1
+},
+{
+q: "What does 'explore' mean?",
+options: ["Ask people","Stay alone","Wait"],
+correct: 0
+},
+{
+q: "How should you see failure?",
+options: ["As the end","As learning","As useless"],
+correct: 1
+},
+{
+q: "What should you do today?",
+options: ["Wait","Act","Complain"],
+correct: 1
+}
+];
+
+const quizDiv = document.getElementById("quiz");
+
+questions.forEach((q, i) => {
+  const div = document.createElement("div");
+  div.className = "question";
+
+  div.innerHTML = `<p><strong>${i+1}. ${q.q}</strong></p>` +
+    q.options.map((opt, j) =>
+      `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`
+    ).join("");
+
+  quizDiv.appendChild(div);
+});
+
+function checkAnswers() {
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && Number(selected.value) === q.correct) {
+      score++;
+    }
+  });
+
+  document.getElementById("result").textContent =
+    `You got ${score} / ${questions.length} correct`;
 }
 
-function goToPage1() {
+function goBack() {
   document.getElementById("page2").classList.add("hidden");
   document.getElementById("page1").classList.remove("hidden");
-}
-
-/* quiz logic */
-function checkAnswers() {
-  const answer = document.querySelector('input[name="q1"]:checked');
-  const feedback = document.getElementById("feedback1");
-
-  if (!answer) {
-    feedback.textContent = "Please select an answer.";
-    return;
-  }
-
-  if (answer.value === "correct") {
-    feedback.textContent = "Correct!";
-    feedback.style.color = "green";
-  } else {
-    feedback.textContent = "Try again.";
-    feedback.style.color = "red";
-  }
 }
 </script>
 
