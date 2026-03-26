@@ -35,12 +35,11 @@ h1 {
   background: #fff;
   border-radius: 12px;
   margin-bottom: 15px;
-  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .accordion-header {
-  padding: 18px 20px;
+  padding: 18px;
   cursor: pointer;
   font-weight: 600;
   display: flex;
@@ -103,145 +102,120 @@ h1 {
 
 <body>
 
-<div class="overlay">
-<div class="container">
+<div class="overlay" id="page1">
+  <div class="container">
 
-<!-- PAGE 1 -->
-<div id="page1">
+    <h1>10 Tips for your career</h1>
 
-<h1>10 Tips for your career</h1>
+    <!-- 10 TIPS (TU CONTENIDO ORIGINAL) -->
 
-<div id="tips-container"></div>
+    <div class="accordion"><div class="accordion-header"><span><span class="number">1.</span>Get to know yourself</span><span>+</span></div><div class="accordion-content"><p>Before you start off in pursuit of a career that really lights your fire, take some time to do some serious self-exploration. Make a list of all the things in your life that you have really enjoyed. It could be work or play, an event, a period of time in your life, etc. Pick one and start digging into the reasons why. Get beyond what you love doing, and break it down into the underlying characteristics.</p></div></div>
 
-<button id="nextBtn" class="btn" disabled>Next →</button>
+    <div class="accordion"><div class="accordion-header"><span><span class="number">2.</span>Brainstorm</span><span>+</span></div><div class="accordion-content"><p>Once you have a picture of the things that light your fire, brainstorm ways you could incorporate them into your life. Write them down alone or with friends. Above all, be creative.</p></div></div>
 
+    <div class="accordion"><div class="accordion-header"><span><span class="number">3.</span>Explore</span><span>+</span></div><div class="accordion-content"><p>Ask, ask, ask! Identify people who are knowledgeable in those areas and contact them. Ask if you can pick their brains and gain insights.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">4.</span>Baby steps</span><span>+</span></div><div class="accordion-content"><p>Look for small steps you can take that will bring your passion into your life and keep you moving towards your long-term goal.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">5.</span>Identify your obstacles</span><span>+</span></div><div class="accordion-content"><p>Make a list of what is stopping you. It could be financial, lack of training, fear, or self-doubt. Recognizing them is the first step.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">6.</span>Create a passion posse</span><span>+</span></div><div class="accordion-content"><p>Surround yourself with supportive people. Friends, family, and colleagues can inspire and help you move forward.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">7.</span>Re-examine success and failure</span><span>+</span></div><div class="accordion-content"><p>Think about what success means to you. Try to see failure as a learning opportunity and a step forward.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">8.</span>Make a plan</span><span>+</span></div><div class="accordion-content"><p>Create a plan that helps you organize your ideas and gives structure to your goals.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">9.</span>Act today!</span><span>+</span></div><div class="accordion-content"><p>Don’t wait for the perfect moment. Take action now and start moving forward.</p></div></div>
+
+    <div class="accordion"><div class="accordion-header"><span><span class="number">10.</span>Commit</span><span>+</span></div><div class="accordion-content"><p>Say it out loud, write it down, and make your goal real. Commitment helps it grow.</p></div></div>
+
+    <button id="nextBtn" class="btn" disabled>Next →</button>
+
+  </div>
 </div>
 
 <!-- PAGE 2 -->
 <div id="page2" class="hidden">
+  <div class="overlay">
+    <div class="container">
 
-<h1>Review</h1>
+      <h1>Review</h1>
 
-<div id="quiz"></div>
+      <div class="question">
+        <p><strong>1. What should you do first?</strong></p>
+        <label><input type="radio" name="q1" value="1"> Get to know yourself</label><br>
+        <label><input type="radio" name="q1" value="0"> Make a plan</label><br>
+        <label><input type="radio" name="q1" value="0"> Wait</label>
+      </div>
 
-<button class="btn" onclick="checkAnswers()">Check answers</button>
-<div class="result" id="result"></div>
-<button class="btn" onclick="goBack()">← Back</button>
+      <div class="question">
+        <p><strong>2. What should you do after identifying interests?</strong></p>
+        <label><input type="radio" name="q2" value="1"> Brainstorm</label><br>
+        <label><input type="radio" name="q2" value="0"> Ignore them</label><br>
+        <label><input type="radio" name="q2" value="0"> Quit</label>
+      </div>
 
-</div>
+      <div class="question">
+        <p><strong>3. What does 'explore' mean?</strong></p>
+        <label><input type="radio" name="q3" value="1"> Ask people</label><br>
+        <label><input type="radio" name="q3" value="0"> Stay alone</label>
+      </div>
 
-</div>
+      <div class="question">
+        <p><strong>4. How should you see failure?</strong></p>
+        <label><input type="radio" name="q4" value="1"> As learning</label><br>
+        <label><input type="radio" name="q4" value="0"> As the end</label>
+      </div>
+
+      <div class="question">
+        <p><strong>5. What should you do today?</strong></p>
+        <label><input type="radio" name="q5" value="1"> Act</label><br>
+        <label><input type="radio" name="q5" value="0"> Wait</label>
+      </div>
+
+      <button class="btn" onclick="checkAnswers()">Check answers</button>
+      <div class="result" id="result"></div>
+      <button class="btn" onclick="goBack()">← Back</button>
+
+    </div>
+  </div>
 </div>
 
 <script>
-const tips = [
-"Before you start off in pursuit of a career that really lights your fire, take some time to do some serious self-exploration. Make a list of all the things in your life that you have really enjoyed.",
-"Once you have a picture of the things that light your fire, brainstorm ways you could incorporate them into your life.",
-"Ask, ask, ask! Identify people who are knowledgeable in those areas and contact them.",
-"Look for small steps you can take that will bring your passion into your life.",
-"Make a list of what is stopping you. Recognizing them is the first step.",
-"Surround yourself with supportive people who inspire you.",
-"Think about what success means to you and see failure as a learning opportunity.",
-"Create a plan that organizes your ideas.",
-"Don’t wait. Take action now.",
-"Commit to your goal by writing it down and saying it out loud."
-];
-
 let opened = new Set();
-const container = document.getElementById("tips-container");
+const items = document.querySelectorAll(".accordion");
 
-tips.forEach((text, i) => {
-  const div = document.createElement("div");
-  div.className = "accordion";
+items.forEach((item, index) => {
+  item.querySelector(".accordion-header").addEventListener("click", () => {
+    item.classList.toggle("active");
+    opened.add(index);
 
-  div.innerHTML = `
-    <div class="accordion-header">
-      <span><span class="number">${i+1}.</span>Tip ${i+1}</span>
-      <span>+</span>
-    </div>
-    <div class="accordion-content">
-      <p>${text}</p>
-    </div>
-  `;
-
-  div.querySelector(".accordion-header").addEventListener("click", () => {
-    div.classList.toggle("active");
-    opened.add(i);
-
-    if (opened.size === tips.length) {
+    if (opened.size === items.length) {
       document.getElementById("nextBtn").disabled = false;
     }
   });
-
-  container.appendChild(div);
 });
 
-/* navigation */
 document.getElementById("nextBtn").onclick = () => {
   document.getElementById("page1").classList.add("hidden");
   document.getElementById("page2").classList.remove("hidden");
 };
 
-/* quiz */
-const questions = [
-{
-q: "What is the first step?",
-options: ["Make a plan","Get to know yourself","Take action"],
-correct: 1
-},
-{
-q: "What should you do after identifying your interests?",
-options: ["Quit your job","Brainstorm ideas","Ignore them"],
-correct: 1
-},
-{
-q: "What does 'explore' mean?",
-options: ["Ask people","Stay alone","Wait"],
-correct: 0
-},
-{
-q: "How should you see failure?",
-options: ["As the end","As learning","As useless"],
-correct: 1
-},
-{
-q: "What should you do today?",
-options: ["Wait","Act","Complain"],
-correct: 1
+function goBack() {
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page1").classList.remove("hidden");
 }
-];
-
-const quizDiv = document.getElementById("quiz");
-
-questions.forEach((q, i) => {
-  const div = document.createElement("div");
-  div.className = "question";
-
-  div.innerHTML = `<p><strong>${i+1}. ${q.q}</strong></p>` +
-    q.options.map((opt, j) =>
-      `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`
-    ).join("");
-
-  quizDiv.appendChild(div);
-});
 
 function checkAnswers() {
   let score = 0;
 
-  questions.forEach((q, i) => {
+  for (let i = 1; i <= 5; i++) {
     const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    if (selected && Number(selected.value) === q.correct) {
-      score++;
-    }
-  });
+    if (selected && selected.value === "1") score++;
+  }
 
   document.getElementById("result").textContent =
-    `You got ${score} / ${questions.length} correct`;
-}
-
-function goBack() {
-  document.getElementById("page2").classList.add("hidden");
-  document.getElementById("page1").classList.remove("hidden");
+    `You got ${score}/5 correct`;
 }
 </script>
 
