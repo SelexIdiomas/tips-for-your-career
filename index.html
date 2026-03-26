@@ -14,43 +14,58 @@ body {
   background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab') center/cover no-repeat fixed;
 }
 
+/* overlay */
 .overlay {
   background: rgba(255,255,255,0.92);
   min-height: 100vh;
   padding: 60px 20px;
 }
 
+/* container */
 .container {
   max-width: 800px;
   margin: auto;
 }
 
+/* title */
 h1 {
   text-align: center;
   margin-bottom: 40px;
+  font-size: 36px;
 }
 
 /* accordion */
 .accordion {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   margin-bottom: 15px;
+  overflow: hidden;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .accordion-header {
-  padding: 18px;
+  padding: 18px 20px;
   cursor: pointer;
   font-weight: 600;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background: #f3f4f6;
 }
 
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: 0.3s;
+  transition: max-height 0.3s ease;
   padding: 0 20px;
+}
+
+.accordion-content p {
+  margin: 15px 0;
+  line-height: 1.6;
 }
 
 .active .accordion-content {
@@ -58,165 +73,115 @@ h1 {
   padding-bottom: 15px;
 }
 
+.icon {
+  font-size: 20px;
+}
+
 .number {
   color: #ec4899;
   margin-right: 10px;
-}
-
-/* buttons */
-.btn {
-  display: block;
-  margin: 40px auto 0;
-  padding: 12px 24px;
-  border: none;
-  background: #10b981;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.btn:disabled {
-  background: gray;
-  cursor: not-allowed;
-}
-
-.hidden {
-  display: none;
-}
-
-/* quiz */
-.question {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.result {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay" id="page1">
+<div class="overlay">
   <div class="container">
 
     <h1>10 Tips for your career</h1>
 
-    <!-- 10 TIPS (TU CONTENIDO ORIGINAL) -->
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">1.</span>Get to know yourself</span><span>+</span></div><div class="accordion-content"><p>Before you start off in pursuit of a career that really lights your fire, take some time to do some serious self-exploration. Make a list of all the things in your life that you have really enjoyed. It could be work or play, an event, a period of time in your life, etc. Pick one and start digging into the reasons why. Get beyond what you love doing, and break it down into the underlying characteristics.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">2.</span>Brainstorm</span><span>+</span></div><div class="accordion-content"><p>Once you have a picture of the things that light your fire, brainstorm ways you could incorporate them into your life. Write them down alone or with friends. Above all, be creative.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">3.</span>Explore</span><span>+</span></div><div class="accordion-content"><p>Ask, ask, ask! Identify people who are knowledgeable in those areas and contact them. Ask if you can pick their brains and gain insights.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">4.</span>Baby steps</span><span>+</span></div><div class="accordion-content"><p>Look for small steps you can take that will bring your passion into your life and keep you moving towards your long-term goal.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">5.</span>Identify your obstacles</span><span>+</span></div><div class="accordion-content"><p>Make a list of what is stopping you. It could be financial, lack of training, fear, or self-doubt. Recognizing them is the first step.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">6.</span>Create a passion posse</span><span>+</span></div><div class="accordion-content"><p>Surround yourself with supportive people. Friends, family, and colleagues can inspire and help you move forward.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">7.</span>Re-examine success and failure</span><span>+</span></div><div class="accordion-content"><p>Think about what success means to you. Try to see failure as a learning opportunity and a step forward.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">8.</span>Make a plan</span><span>+</span></div><div class="accordion-content"><p>Create a plan that helps you organize your ideas and gives structure to your goals.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">9.</span>Act today!</span><span>+</span></div><div class="accordion-content"><p>Don’t wait for the perfect moment. Take action now and start moving forward.</p></div></div>
-
-    <div class="accordion"><div class="accordion-header"><span><span class="number">10.</span>Commit</span><span>+</span></div><div class="accordion-content"><p>Say it out loud, write it down, and make your goal real. Commitment helps it grow.</p></div></div>
-
-    <button id="nextBtn" class="btn" disabled>Next →</button>
-
-  </div>
-</div>
-
-<!-- PAGE 2 -->
-<div id="page2" class="hidden">
-  <div class="overlay">
-    <div class="container">
-
-      <h1>Review</h1>
-
-      <div class="question">
-        <p><strong>1. What should you do first?</strong></p>
-        <label><input type="radio" name="q1" value="1"> Get to know yourself</label><br>
-        <label><input type="radio" name="q1" value="0"> Make a plan</label><br>
-        <label><input type="radio" name="q1" value="0"> Wait</label>
+    <!-- 1 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">1.</span>Get to know yourself</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Before you start off in pursuit of a career that really lights your fire, take some time to do some serious self-exploration. Make a list of all the things in your life that you have really enjoyed. It could be work or play, an event, a period of time in your life, etc. Pick one and start digging into the reasons why. Get beyond what you love doing, and break it down into the underlying characteristics. Think of it as identifying your passion’s building blocks.</p>
       </div>
-
-      <div class="question">
-        <p><strong>2. What should you do after identifying interests?</strong></p>
-        <label><input type="radio" name="q2" value="1"> Brainstorm</label><br>
-        <label><input type="radio" name="q2" value="0"> Ignore them</label><br>
-        <label><input type="radio" name="q2" value="0"> Quit</label>
-      </div>
-
-      <div class="question">
-        <p><strong>3. What does 'explore' mean?</strong></p>
-        <label><input type="radio" name="q3" value="1"> Ask people</label><br>
-        <label><input type="radio" name="q3" value="0"> Stay alone</label>
-      </div>
-
-      <div class="question">
-        <p><strong>4. How should you see failure?</strong></p>
-        <label><input type="radio" name="q4" value="1"> As learning</label><br>
-        <label><input type="radio" name="q4" value="0"> As the end</label>
-      </div>
-
-      <div class="question">
-        <p><strong>5. What should you do today?</strong></p>
-        <label><input type="radio" name="q5" value="1"> Act</label><br>
-        <label><input type="radio" name="q5" value="0"> Wait</label>
-      </div>
-
-      <button class="btn" onclick="checkAnswers()">Check answers</button>
-      <div class="result" id="result"></div>
-      <button class="btn" onclick="goBack()">← Back</button>
-
     </div>
+
+    <!-- 2 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">2.</span>Brainstorm</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Once you have a picture of the things that light your fire, brainstorm ways you could incorporate them into your life. Write them down alone or with friends. Above all, be creative.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">3.</span>Explore</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Ask, ask, ask! Identify people who are knowledgeable in those areas and contact them. Ask if you can pick their brains and gain insights.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">4.</span>Baby steps</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Look for small steps you can take that will bring your passion into your life and keep you moving towards your long-term goal.</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">5.</span>Identify your obstacles</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Make a list of what is stopping you. It could be financial, lack of training, fear, or self-doubt. Recognizing them is the first step.</p>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">6.</span>Create a passion posse</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Surround yourself with supportive people. Friends, family, and colleagues can inspire and help you move forward.</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">7.</span>Re-examine success and failure</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Think about what success means to you. Try to see failure as a learning opportunity and a step forward.</p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">8.</span>Make a plan</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Create a plan that helps you organize your ideas and gives structure to your goals.</p>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">9.</span>Act today!</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Don’t wait for the perfect moment. Take action now and start moving forward.</p>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="accordion">
+      <div class="accordion-header"><span><span class="number">10.</span>Commit</span><span class="icon">+</span></div>
+      <div class="accordion-content">
+        <p>Say it out loud, write it down, and make your goal real. Commitment helps it grow.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
 <script>
-let opened = new Set();
 const items = document.querySelectorAll(".accordion");
 
-items.forEach((item, index) => {
+items.forEach(item => {
   item.querySelector(".accordion-header").addEventListener("click", () => {
     item.classList.toggle("active");
-    opened.add(index);
-
-    if (opened.size === items.length) {
-      document.getElementById("nextBtn").disabled = false;
-    }
   });
 });
-
-document.getElementById("nextBtn").onclick = () => {
-  document.getElementById("page1").classList.add("hidden");
-  document.getElementById("page2").classList.remove("hidden");
-};
-
-function goBack() {
-  document.getElementById("page2").classList.add("hidden");
-  document.getElementById("page1").classList.remove("hidden");
-}
-
-function checkAnswers() {
-  let score = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    if (selected && selected.value === "1") score++;
-  }
-
-  document.getElementById("result").textContent =
-    `You got ${score}/5 correct`;
-}
 </script>
 
 </body>
